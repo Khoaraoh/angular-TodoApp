@@ -1,0 +1,13 @@
+.inputContainer{
+    padding-bottom: 16px;
+}
+
+.todo {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+}
+
+.todo > * {
+    margin: 0px 4px;
+}

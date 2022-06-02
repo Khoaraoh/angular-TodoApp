@@ -1,0 +1,17 @@
+<div class="todoContainer">
+    <div class="inputContainer">
+        <input 
+            type="text" 
+            name="inputTodo" 
+            placeholder="Input your todo..." 
+            [(ngModel)] = "inputTodo"
+            />
+        <button (click) = "handleAdd()">Add</button>
+    </div>
+
+    <div class="todo" *ngFor="let listItems of todoList; let i =  index">
+        <div class="id">{{i}}</div>
+        <div class="content">{{listItems}}</div>
+        <button (click)="handleDelete(i)">Delete</button>
+    </div>
+</div>
