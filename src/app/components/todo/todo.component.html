@@ -9,9 +9,16 @@
         <button (click) = "handleAdd()">Add</button>
     </div>
 
-    <div class="todo" *ngFor="let listItems of todoList; let i =  index">
+    <div class="todo" *ngFor="let listItem of todoList; let i =  index">
         <div class="id">{{i}}</div>
-        <div class="content">{{listItems}}</div>
-        <button (click)="handleDelete(i)">Delete</button>
+        <div *ngIf="isEditNow == i; else elseBlock">
+            <input #inputField type="text" [(ngModel)] = "editValue"/>
+            <button (click)="handleSubmitEdit(i)">Apply</button>
+        </div>
+        <ng-template #elseBlock>
+            <div class="content">{{listItem}}</div>
+            <button (click)="handleEdit(i)">Edit</button>
+            <button (click)="handleDelete(i)">Delete</button>
+        </ng-template>
     </div>
 </div>

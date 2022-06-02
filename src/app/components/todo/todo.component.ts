@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-todo',
@@ -11,11 +11,15 @@ export class TodoComponent implements OnInit {
 
   inputTodo:string = '';
 
+  editValue:string = '';
+
+  isEditNow:number = -1;
+
   constructor() { }
 
   ngOnInit(): void {
     this.todoList = [
-      'Frist task',
+      'First task',
       'Second task'
     ]
   }
@@ -30,4 +34,18 @@ export class TodoComponent implements OnInit {
     this.todoList.splice(id, 1);
   }
 
+  @ViewChild("inputField") inputField:any;
+
+  handleEdit(id: number){
+    this.isEditNow = id;
+    this.editValue = this.todoList[id];
+    this.inputField.nativeElement.focus();
+  }
+
+  handleSubmitEdit(id: number){
+    this.todoList[id] = this.editValue;
+    console.log(this.todoList);
+    this.isEditNow = -1;
+    this.editValue = '';
+  }
 }
